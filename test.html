@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var arr=[
+      [2,4,4,2],
+      [2,4,4,2],
+      [8,8,16,8],
+      [2,16,4,4]
+    ];
+    console.log(arr);
+    // 左移函数
+    function leftmove(){
+      // 左边位置上的元素为0  且该元素不是最左边的数字,最右边的数字如果左移后，原下标的数字=0
+      for(var i=0;i<4;i++){
+        for(var j=0;j<4;j++){
+          if(arr[i][0] == 0){
+            arr[i].splice(0,1);
+            arr[i].push(0);
+          }
+          else if(arr[i][j] == 0 ){
+            arr[i].splice(j,1);
+            arr[i].push(0);
+          }
+          else if(arr[i][j-1] == 0){
+            arr[i].splice(j-1,1);
+            arr[i].push(0);
+          }
+        }
+      }
+      for(let m=0;m<4;m++){
+        for(let n=0;n<4;n++){
+          if(arr[m][n]==arr[m][n+1]){
+            arr[m][n] *=2;
+            arr[m].splice(n+1,1);
+            arr[m].push(0);
+          }
+        }
+      }
+    }
+    // 上移函数
+    function topmove(){
+      // 上边的元素为0 且该元素不是最上面的数字  最下面一列元素上移后  原下标位置上的数为0
+      function move(){
+        for(let i=3;i>0;i--){
+          for(let j=0;j<4;j++){
+            if(arr[i-1][j] == 0){
+              arr[i-1][j]=arr[i][j];
+              arr[i][j]=0;
+            }
+          }
+        }
+        for(let i=1;i<4;i++){
+          for(let j=0;j<4;j++){
+            if(arr[i-1][j] == 0){
+              arr[i-1][j]=arr[i][j];
+              arr[i][j]=0;
+            }
+          }
+        }
+        for(let i=3;i>0;i--){
+          for(let j=0;j<4;j++){
+            if(arr[i-1][j] == 0){
+              arr[i-1][j]=arr[i][j];
+              arr[i][j]=0;
+            }
+          }
+        }
+      }
+      move();
+      for(let m=1;m<4;m++){
+        for(let n=0;n<4;n++){
+          if(arr[m][n] == arr[m-1][n]){
+            arr[m-1][n] *=2;
+            arr[m][n]=0;
+          }
+        }
+      }
+      move();
+
+    }
+    // 右移函数
+    function rightmove(){
+      // 左边位置上的元素为0  且该元素不是最左边的数字,最右边的数字如果左移后，原下标的数字=0
+      for(var i=0;i<4;i++){
+        for(var j=0;j<4;j++){
+          if(arr[i][3] == 0){
+            arr[i].splice(3,1);
+            arr[i].unshift(0);
+          }
+          else if(arr[i][j] == 0 ){
+            arr[i].splice(j,1);
+            arr[i].unshift(0);
+          }
+          else if(arr[i][j+1] == 0){
+            arr[i].splice(j+1,1);
+            arr[i].unshift(0);
+          }
+        }
+      }
+      for(let m=0;m<4;m++){
+        for(let n=3;n>0;n--){
+          if(arr[m][n]==arr[m][n-1]){
+            arr[m][n] *=2;
+            arr[m].splice(n-1,1);
+            arr[m].unshift(0);
+          }
+        }
+      }
+    }
+    // 下移函数
+    function bottom_move(){
+      function move(){
+        for(let i=3;i>0;i--){
+          for(let j=0;j<4;j++){
+            if(arr[i][j] == 0){
+              arr[i][j]=arr[i-1][j];
+              arr[i-1][j]=0;
+            }
+          }
+        }
+        for(let m=0;m<3;m++){
+          for(let n=0;n<4;n++){
+            if(arr[m+1][n]==0 ){
+              arr[m+1][n]=arr[m][n];
+              arr[m][n]=0;
+            }
+          }
+        }
+
+        for(let i=3;i>0;i--){
+          for(let j=0;j<4;j++){
+            if(arr[i][j] == 0){
+              arr[i][j]=arr[i-1][j];
+              arr[i-1][j]=0;
+            }
+          }
+        }
+      }
+      move();
+      for(let m=2;m>=0;m--){
+        for(let n=0;n<4;n++){
+          if(arr[m+1][n] == arr[m][n]){
+            arr[m+1][n] *=2;
+            arr[m][n]=0;
+          }
+        }
+      }
+      move();
+    }
+    document.onkeydown=function(event){
+      var e = event || window.event || arguments.callee.caller.arguments[0];
+      if(e.keyCode==37){//左移    game.data[x][y]  y-1
+        leftmove();
+        console.log(arr)
+
+      }
+      if(e.keyCode==38){//上  game.data[x][y]   x-1  
+        topmove();
+        console.log(arr)
+
+      }
+      if( e.keyCode==39){//右  game.data[x][y]   y+1
+        rightmove();
+        console.log(arr)
+
+      }
+      if(e.keyCode==40 ){//下  game.data[x][y]   x+1
+        bottom_move()
+        console.log(arr)
+      }
+    }
+  </script>
+</body>
+</html>

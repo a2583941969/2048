@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2048</title>
+        <link rel="stylesheet" href="2048.css">
+        <script src="2048.js"></script>
+</head>
+<body>
+    <header>
+        <p class="tle">2048</p>
+        <p class="score">得分：
+            <span id = "score">0</span>
+            <span id="newgame">New Game</span>
+        </p>
+    </header>
+    <div id="grid-container">
+        <div id="row1">
+            <div class="gridNum" id="gridNum00"></div>
+            <div class="gridNum" id="gridNum01"></div>
+            <div class="gridNum" id="gridNum02"></div>
+            <div class="gridNum" id="gridNum03"></div>
+        </div>
+        <div id="row2">
+            <div class="gridNum" id="gridNum10"></div>
+            <div class="gridNum" id="gridNum11"></div>
+            <div class="gridNum" id="gridNum12"></div>
+            <div class="gridNum" id="gridNum13"></div>
+        </div>
+        <div id="row3">
+            <div class="gridNum" id="gridNum20"></div>
+            <div class="gridNum" id="gridNum21"></div>
+            <div class="gridNum" id="gridNum22"></div>
+            <div class="gridNum" id="gridNum23"></div>
+        </div>
+        <div id="row4">
+            <div class="gridNum" id="gridNum30"></div>
+            <div class="gridNum" id="gridNum31"></div>
+            <div class="gridNum" id="gridNum32"></div>
+            <div class="gridNum" id="gridNum33"></div>
+        </div>
+    </div>
+    <div id="gameover">
+        <div>X</div>
+        <p>Game Over</p>
+    </div>
+</body>
+</html>
